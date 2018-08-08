@@ -9,7 +9,7 @@ node {
 	
   stage('Deploy') {
         withCredentials([azureServicePrincipal('AzureACR')]) {
-           sh " docker build -f -t reactjs . "
+           sh " docker build -t reactjs . "
 				sh " docker tag reactjs reactjs.azurecr.io/reactjs:latest "
 				sh " docker login reactjs.azurecr.io -u ${env.CLIENT_ID} -p ${env.CLIENT_SECRET} "
 				sh " docker push reactjs.azurecr.io/reactjs:latest "
