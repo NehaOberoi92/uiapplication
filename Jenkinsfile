@@ -9,8 +9,7 @@ node {
 	stage ('CI')
 		{
 			echo 'Checkout latest'
-			cleanWs()
-            gitCheckoutAll{}
+			checkout scm
 		}
   stage('Deploy') {
         withCredentials([azureServicePrincipal('AzureACR')]) {
