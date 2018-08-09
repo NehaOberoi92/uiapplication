@@ -6,7 +6,7 @@ node {
 	$AZURE_CLIENT_SECRET = "87707728-ac21-44e1-aae5-1aeacc6f3cd3"
     $AZURE_TENANT_ID = "161d362d-5a7e-4e4a-a80a-44a5a7e5878a"
 	$AZURE_SUBSCRIPTION_ID = "866cc0e3-a977-49d0-9c6b-1c76e374a498"
-	$DOCKER_TAG = env.BUILD_NUMBER
+	# $DOCKER_TAG = env.BUILD_NUMBER
 	stage ('CI')
 		{
 			echo 'Checkout latest'
@@ -16,7 +16,7 @@ node {
         withCredentials([azureServicePrincipal('AzureACR')]) {
            sh " docker build -t reactjs . "
 				sh " docker tag reactjs reactjs.azurecr.io/reactjs:latest "
-		sh " docker tag reactjs reactjs.azurecr.io/${env.BUILD_NUMBER} "
+		sh " docker tag reactjs reactjs.azurecr.io/${DOCKER_TAG} "
 				sh " docker login reactjs.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET "
 				sh " docker push reactjs.azurecr.io/reactjs:latest "
 				sh " docker push reactjs.azurecr.io/reactjs:${env.BUILD_NUMBER} "
