@@ -12,6 +12,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package.json /usr/src/app/package.json
 RUN npm install --silent 
 RUN npm install react-script@1.1.1 -g --silent
+COPY . /usr/src/app
 
 #start app
 EXPOSE 3000
