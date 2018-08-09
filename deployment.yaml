@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: node-example-deploymentt
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: node-exampletry
+    spec:
+      containers:
+      - name: node-exampletry
+        image: reactjs.azurecr.io/reactjs:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: nehadocker
+       
