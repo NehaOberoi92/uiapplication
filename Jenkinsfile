@@ -17,6 +17,7 @@ node {
            sh " docker build -t reactjs . "
 				sh " docker tag reactjs reactjs.azurecr.io/reactjs:latest "
 		sh " docker tag reactjs reactjs.azurecr.io/${DOCKER_TAG} "
+		sh " docker tag reactjs reactjs.azurecr.io/${env.BUILD_NUMBER} "
 				sh " docker login reactjs.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET "
 				sh " docker push reactjs.azurecr.io/reactjs:latest "
 				sh " docker push reactjs.azurecr.io/reactjs:${env.BUILD_NUMBER} "
