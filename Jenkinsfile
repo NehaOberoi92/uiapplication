@@ -25,7 +25,6 @@ node {
 }
 	stage('DeployKubernetesPOD') {
 		withCredentials([azureServicePrincipal('AzureACR')]) {
-		# Update kubernetes deployment with new image.
 		WEB_IMAGE_NAME="reactjs.azurecr.io/reactjs:latest"
 		kubectl set image deployment/node-example-deployment node-example=$WEB_IMAGE_NAME --kubeconfig /var/lib/jenkins/config
 }
