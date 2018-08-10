@@ -6,7 +6,7 @@ node {
 	$AZURE_CLIENT_SECRET = "87707728-ac21-44e1-aae5-1aeacc6f3cd3"
     $AZURE_TENANT_ID = "161d362d-5a7e-4e4a-a80a-44a5a7e5878a"
 	$AZURE_SUBSCRIPTION_ID = "866cc0e3-a977-49d0-9c6b-1c76e374a498"
-	$WEB_IMAGE_NAME="reactjs.azurecr.io/reactjs:latest"
+	
 	
 	stage ('CI')
 		{
@@ -26,8 +26,8 @@ node {
 }
 	stage('DeployKubernetesPOD') {
 		withCredentials([azureServicePrincipal('AzureACR')]) {
-		
-			sh " kubectl set image deployment/node-example-deployment node-example-deployment=$WEB_IMAGE_NAME "
+		$WEB_IMAGE_NAME="reactjs.azurecr.io/reactjs:latest"
+			sh " kubectl set image deployment/node-example-deployment node-example-deployment=${WEB_IMAGE_NAME} "
 }
 }
 }
