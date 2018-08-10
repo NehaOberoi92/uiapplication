@@ -27,6 +27,7 @@ node {
 	stage('DeployKubernetesPOD') {
 		withCredentials([azureServicePrincipal('AzureACR')]) {
 		$WEB_IMAGE_NAME="reactjs.azurecr.io/reactjs:latest"
+			sh " echo $PATH "
 			sh " cd /usr/local/bin "
 			sh " /usr/local/bin/kubectl set image deployment/node-example-deployment node-example-deployment=reactjs.azurecr.io/reactjs:latest "
 }
