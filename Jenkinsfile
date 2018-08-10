@@ -23,7 +23,7 @@ node {
 				sh " docker push reactjs.azurecr.io/reactjs:${env.BUILD_NUMBER} "
 }
 }
-	stage('DeployKubernetesPOD") {
+	stage('DeployKubernetesPOD') {
 		withCredentials([azureServicePrincipal('AzureACR')]) {
 		# Update kubernetes deployment with new image.
 		WEB_IMAGE_NAME="reactjs.azurecr.io/reactjs:latest"
